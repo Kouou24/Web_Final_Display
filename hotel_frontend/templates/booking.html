@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<style>
+    body {
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header-image {
+            background-image: url('https://www.tw.kayak.com/rimg/himg/28/d0/4a/ice-398374-107567630-355450.jpg?width=1366&height=768&crop=true');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 500px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        .button-group {
+      display: none;
+    }
+
+
+    .dropdown:hover .button-group {
+      display: inline;  
+    }
+    .custom-width {
+    text-align: center;
+    height: 30px;
+    width: 500px; /* 或者您想要的宽度 */
+    }
+</style>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('index') }}" >Home</a>
+            <a href="{{ url_for('accessmap',_external=True) }}" >Access Map</a>
+            <div class="dropdown">
+              <span style="color:white;font-size: 18px;">Guest Room</span>
+              <div class="button-group">
+                <br>
+                <button><a href="{{ url_for('Exquisite_Haven') }}"  style="color:#B19470;">Exquisite Haven</a></button>
+                <br>
+                <button><a href="{{ url_for('sea_house') }}" style="color:#B19470;">Serene Wave Retreat</a></button>
+                <br>
+                <button><a href="{{ url_for('normal_four') }}" style="color:#B19470;">Homely Seasons Retreat</a></button>
+              </div>
+            </div> 
+
+          </nav>
+    </header>
+    <div class="container">
+        <div class="header-image">
+            <h1>Welcome to Our Hotel</h1>
+        </div>  
+        <h2>Book a Room</h2>
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.guest_name.label }} {{ form.guest_name(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.room_number.label }} {{ form.room_number(class="form-control custom-width ") }}
+            </div>
+            <div class="form-group">
+                {{ form.check_in_date.label }} {{ form.check_in_date(class="form-control") }}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.check_out_date.label }} {{ form.check_out_date(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.contact_info.label }} {{ form.contact_info(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+    <nav>
+        <p></p>
+    </nav>
+</body>
+</html>
+

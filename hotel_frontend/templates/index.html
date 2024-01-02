@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hotel Booking</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+          .container{
+            text-align: center;
+            color: white;
+          }  
+    
+          .container2 {
+            width: 100%;
+            height: 100%;
+            /* Add your background pattern here */
+            --size: 80px; /* control the size */
+            --color: #fefae0;
+          
+            --l: var(--color) 20%, #0000 0;
+            --bg: 35%, #606c38 0 45%, var(--color) 0;
+            background: linear-gradient(45deg, var(--l) 45%, var(--color) 0 70%, #0000 0),
+              linear-gradient(-45deg, var(--l) var(--bg) 70%, #0000 0),
+              linear-gradient(45deg, var(--color) var(--bg));
+            background-size: var(--size) var(--size);
+          }
+              
+          .button-container {
+            display: flex;
+            background-color: rgba(245, 73, 144);
+            width: 100%;
+            height: 40px;
+            align-items: center;
+            justify-content: space-around;
+    
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px,
+                  rgba(245, 73, 144, 0.5) 5px 10px 15px;
+          }
+              
+          .button {
+            outline: 0 !important;
+            border: 0 !important;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+          }
+            
+          .button:hover {
+            transform: translateY(-3px);
+          }
+    
+          .btn2 {
+            position: relative;
+            display: inline-block;
+            padding: 15px 30px;
+            border: 2px solid #fefefe;
+            text-transform: uppercase;
+            color: #fefefe;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 20px;
+            transition: 0.3s;
+          }
+          
+          .btn2::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% - -2px);
+            background-color: #212121;
+            transition: 0.3s ease-out;
+            transform: scaleY(1);
+          }
+          
+          .btn2::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% - 50px);
+            background-color: #212121;
+            transition: 0.3s ease-out;
+            transform: scaleY(1);
+          }
+          
+          .btn2:hover::before {
+            transform: translateY(-25px);
+            height: 0;
+          }
+          
+          .btn2:hover::after {
+            transform: scaleX(0);
+            transition-delay: 0.15s;
+          }
+          
+          .btn2:hover {
+            border: 2px solid #fefefe;
+            color: cyan;
+            text-decoration: none;
+          }
+          
+          .btn2 span {
+            position: relative;
+            z-index: 3;
+          }
+          
+          .button2 {
+            text-decoration: none;
+            border: none;
+            background-color: transparent;
+          }
+            
+          .icon {
+            font-size: 20px;
+          }
+    
+          .carousel {
+            position: relative;
+            width: 80%;
+            height: 500px;
+            overflow: hidden;
+            margin: 0 auto;
+            border: 10px black solid;
+          }
+    
+          .carousel img {
+            position: absolute;
+            width: 100%;
+            height: 500px;
+            display: none;
+    
+          }
+    
+          .carousel img:first-child {
+            display: block;
+          }
+          nav {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            margin-bottom: 8px;
+
+        }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 20px 20px;
+        margin: 0 10px;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        background-color: #555;
+    }
+        </style>
+    </head>
+
+
+    <body style="background-color:#212121;">
+  
+        <div class="container">
+            <h1>Welcome to Our Hotel</h1>
+            <br>
+            <button class = "button2"><a href="{{ url_for('booking') }}" class="btn2"><span class="spn2">Book a Room</span></a></button>
+        </div>
+        <br>
+        <div class="carousel">
+            <img src="https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?ca=6&ce=1&s=414x232&ar=16x9" alt="Image 1">
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/242838888.jpg?k=5315111a2d2ca23b0e0ae4891178ee256cefe01dabc682abca839345f86071c4&o=&hp=1" alt="Image 2">
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="Image 3">
+        </div>
+           
+        <script>
+            $(document).ready(function(){
+                $(".carousel img:first-child").show();
+            
+                setInterval(function(){
+                $(".carousel img:first-child").fadeOut(1000).next("img").fadeIn(1000).end().appendTo(".carousel");
+                }, 3000);
+            });
+        </script>
+        <div class="container mt-4">
+            <h2>Booking Condition</h2>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <!-- Table Headers -->
+                        <th style="color: #212121;background-color: #fefefe;">Check In</th>
+                        <th style="color: #212121;background-color: #fefefe;">Check Out</th>
+                        <th style="color: #212121;background-color: #fefefe;">Guest Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                    <tr style="color: white">
+                        <!-- Table Data -->
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    
+</body>
+</html>

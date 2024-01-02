@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hotel Booking</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+          .container{
+            text-align: center;
+            color: white;
+          }  
+    
+          .container2 {
+            width: 100%;
+            height: 100%;
+            /* Add your background pattern here */
+            --size: 80px; /* control the size */
+            --color: #fefae0;
+          
+            --l: var(--color) 20%, #0000 0;
+            --bg: 35%, #606c38 0 45%, var(--color) 0;
+            background: linear-gradient(45deg, var(--l) 45%, var(--color) 0 70%, #0000 0),
+              linear-gradient(-45deg, var(--l) var(--bg) 70%, #0000 0),
+              linear-gradient(45deg, var(--color) var(--bg));
+            background-size: var(--size) var(--size);
+          }
+              
+          .button-container {
+            display: flex;
+            background-color: rgba(245, 73, 144);
+            width: 100%;
+            height: 40px;
+            align-items: center;
+            justify-content: space-around;
+    
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px,
+                  rgba(245, 73, 144, 0.5) 5px 10px 15px;
+          }
+              
+          .button {
+            outline: 0 !important;
+            border: 0 !important;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+          }    
+            
+          .icon {
+            font-size: 20px;
+          }
+    
+          .carousel {
+            position: relative;
+            width: 80%;
+            height: 640px;
+            overflow: hidden;
+            margin: 0 auto;
+          }
+    
+          .carousel img {
+            position: absolute;
+            width: 1600px;
+            height: 640px;
+            display: none;
+    
+          }
+    
+          .carousel img:first-child {
+            display: block;
+          }
+          nav {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            margin-bottom: 8px;
+
+        }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 20px 20px;
+        margin: 0 10px;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+       
+    }
+
+    .button-group {
+      display: none;
+    }
+
+
+    .dropdown:hover .button-group {
+      display: inline;  
+    }
+    </style>
+    </head>
+
+
+    <body style="background-color:white;">
+        <header>
+            <nav>
+              <a href="{{ url_for('index') }}" >Home</a>
+              <a href="{{ url_for('accessmap') }}"  >Access Map</a>
+              <div class="dropdown">
+                <span style="color:white;font-size: 18px;">Guest Room</span>
+                <!-- 按钮组 -->
+                <div class="button-group">
+                  <br>
+                  <button><a href="{{ url_for('Exquisite_Haven') }}"  style="color:#B19470;">Exquisite Haven</a></button>
+                  <br>
+                  <button><a href="{{ url_for('sea_house') }}"  style="color:#B19470;">Serene Wave Retreat</a></button>
+                  <!-- 可以添加更多按钮 -->
+                  <br>
+                  <button><a href="{{ url_for('normal_four') }}"  style="color:#B19470;">Homely Seasons Retreat</a></button>
+                </div>
+              </div> 
+
+            </nav>
+        </header>
+        <br>
+        <h1 style="text-align: center;">Exquisite Haven</h1>
+        <div class="carousel">
+            <img src="https://img.lexica.art/7b85521b-d9a7-4723-bf03-8fde7e8b373a_full.webp" alt="Image 1">
+            <img src="https://img.lexica.art/a72d7a62-71dd-42c8-bf15-493e93b6a6b8_full.webp" alt="Image 2">
+            <img src="https://img.lexica.art/628b95e7-1e10-4735-8b8d-f071927a8bed_full.webp" alt="Image 3">
+            
+        </div>
+           
+        <script>
+            $(document).ready(function(){
+                $(".carousel img:first-child").show();
+            
+                setInterval(function(){
+                $(".carousel img:first-child").fadeOut(1000).next("img").fadeIn(1000).end().appendTo(".carousel");
+                }, 3000);
+            });
+        </script>
+        <br>
+        <div style="background-color: #fefae0;">
+            <h1 style="text-align: center;">Advance</h1>
+            <ul>
+                <ol type="I" style="font-size: 30px;">
+                    <li>Luxurious Decor:Immerse yourself in opulence with meticulously curated furnishings and upscale decor, creating an ambiance of refined elegance.</li>
+                    <img src="https://img.lexica.art/584fa5c7-cfd8-4112-937f-56edec7b1b01_full.webp" style="width: 1600px;height:640px ;display:block; margin:auto">
+                    <li>Modern Artistry: Experience a visual feast with contemporary artworks that adorn the walls, adding a touch of modernity and cultural richness to the living space.</li>
+                    <img src="https://img.lexica.art/9bae5c60-6d75-4046-b448-4faa6f6f1993_full.webp" style="width: 1600px;height:640px ;display:block; margin:auto">
+                    <li>High-End Bathroom: Pamper yourself in a spa-like bathroom retreat, featuring premium fixtures, sophisticated design, and a luxurious ambiance for ultimate relaxation.</li>
+                    <img src="https://img.lexica.art/f25f0c8d-0328-4461-9a44-73b8dc06c587_full.webp" style="width: 1600px;height:640px ;display:block; margin:auto">
+                    <li>ustomized Furniture: Enjoy the exclusivity of bespoke furniture, meticulously crafted to enhance both functionality and aesthetic appeal, ensuring a personalized and unique experience.</li>
+                    <img src="https://img.lexica.art/49613614-9cf5-4d34-be18-0d5b5fb7aa68_full.webp" style="width: 1600px;height:640px ;display:block; margin:auto">
+                </ol>
+            </ul>
+        </div>
+ 
+</body>
+</html>

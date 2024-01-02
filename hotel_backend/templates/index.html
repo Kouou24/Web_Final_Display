@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Chart.js CDN -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="container mt-5">
+    {% include 'layout/menu.html' %}
+
+    <div class="content">
+        <h1>Hotel Management</h1>
+        
+        <!-- Chart Container -->
+        <div>
+            <canvas id="bookingChart" width="400" height="200"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="bookingMonthChart" width="400" height="200"></canvas>
+        </div>
+        <!-- Your dashboard's content goes here -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Script for Chart -->
+    <script>
+        // Fetch data from Flask route
+        fetch('/booking_counts_by_room')
+            .then(response => response.json())
+            .then(data => {
+                // Extract labels and data from the response
+                const labels = data.labels;
+                const counts = data.counts;
+    
+                // Determine the suggestedMax dynamically
+                const suggestedMax = Math.max(...counts) + 1;
+    
+                // Create a bar chart
+                var ctx = document.getElementById('bookingChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Booking Counts',
+                            data: counts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                stepSize: 1,
+                                suggestedMax: 10
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+    <script>
+        // Fetch data for Booking Counts by Month from Flask route
+        fetch('/booking_counts_by_month')
+            .then(response => response.json())
+            .then(data => {
+                // Extract months and data from the response
+                const months = data.months;
+                const counts = data.counts;
+    
+                // Determine the suggestedMax dynamically
+                const suggestedMax = Math.max(...counts) + 1;
+    
+                // Create a bar chart for Booking Counts by Month
+                var ctxMonth = document.getElementById('bookingMonthChart').getContext('2d');
+                var myChartMonth = new Chart(ctxMonth, {
+                    type: 'bar',
+                    data: {
+                        labels: months,
+                        datasets: [{
+                            label: 'Booking Counts by Month',
+                            data: counts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                stepSize: 1,
+                                suggestedMax: 10
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+    
+</body>
+</html>

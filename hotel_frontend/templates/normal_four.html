@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hotel Booking</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+          .container{
+            text-align: center;
+            color: white;
+          }  
+    
+          .container2 {
+            width: 100%;
+            height: 100%;
+            /* Add your background pattern here */
+            --size: 80px; /* control the size */
+            --color: #fefae0;
+          
+            --l: var(--color) 20%, #0000 0;
+            --bg: 35%, #606c38 0 45%, var(--color) 0;
+            background: linear-gradient(45deg, var(--l) 45%, var(--color) 0 70%, #0000 0),
+              linear-gradient(-45deg, var(--l) var(--bg) 70%, #0000 0),
+              linear-gradient(45deg, var(--color) var(--bg));
+            background-size: var(--size) var(--size);
+          }
+              
+          .button-container {
+            display: flex;
+            background-color: rgba(245, 73, 144);
+            width: 100%;
+            height: 40px;
+            align-items: center;
+            justify-content: space-around;
+    
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px,
+                  rgba(245, 73, 144, 0.5) 5px 10px 15px;
+          }
+              
+          .button {
+            outline: 0 !important;
+            border: 0 !important;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+          }    
+            
+          .icon {
+            font-size: 20px;
+          }
+    
+          .carousel {
+            position: relative;
+            width: 80%;
+            height: 640px;
+            overflow: hidden;
+            margin: 0 auto;
+          }
+    
+          .carousel img {
+            position: absolute;
+            width: 1600px;
+            height: 640px;
+            display: none;
+    
+          }
+    
+          .carousel img:first-child {
+            display: block;
+          }
+          nav {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            margin-bottom: 8px;
+
+        }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 20px 20px;
+        margin: 0 10px;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+       
+    }
+
+    .button-group {
+      display: none;
+    }
+
+
+    .dropdown:hover .button-group {
+      display: inline;  
+    }
+    </style>
+    </head>
+
+
+    <body style="background-color:white;">
+        <header>
+            <nav>
+              <a href="{{ url_for('index') }}" >Home</a>
+              <a href="{{ url_for('accessmap') }}"  >Access Map</a>
+              <div class="dropdown">
+                <span style="color:white;font-size: 18px;">Guest Room</span>
+                <!-- 按钮组 -->
+                <div class="button-group">
+                  <br>
+                  <button><a href="{{ url_for('Exquisite_Haven') }}"  style="color:#B19470;">Exquisite Haven</a></button>
+                  <br>
+                  <button><a href="{{ url_for('sea_house') }}"  style="color:#B19470;">Serene Wave Retreat</a></button>
+                  <!-- 可以添加更多按钮 -->
+                  <br>
+                  <button><a href="{{ url_for('normal_four') }}"  style="color:#B19470;">Homely Seasons Retreat</a></button>
+                </div>
+              </div> 
+
+            </nav>
+        </header>
+        <br>
+        <h1 style="text-align: center;">Homely Seasons Retreat</h1>
+        <div class="carousel">
+            <img src="https://img.lexica.art/8833c557-f02a-484d-bd87-7d07965cfa62_full.webp" alt="Image 1">
+            <img src="https://img.lexica.art/530f115d-7ad7-496f-974b-8286d4bf2a20_full.webp" alt="Image 2">
+            <img src="https://img.lexica.art/9e3b0889-9368-4ed7-8efc-6ba9bebe9379_full.webp" alt="Image 3">
+            
+        </div>
+           
+        <script>
+            $(document).ready(function(){
+                $(".carousel img:first-child").show();
+            
+                setInterval(function(){
+                $(".carousel img:first-child").fadeOut(1000).next("img").fadeIn(1000).end().appendTo(".carousel");
+                }, 3000);
+            });
+        </script>
+        <br>
+        <div style="background-color: #fefae0;">
+            <h1 style="text-align: center;">Advance</h1>
+            <ul>
+                <ol type="I" style="font-size: 30px;">
+                    <li>Natural Light and Spacious Layout : Bask in the invigorating glow of natural light, thanks to strategically placed large windows that brighten the entire space, Enjoy a generous and well-organized living space, providing room for relaxation and ensuring a clutter-free environment</li>
+                    <img src="https://img.lexica.art/8962f61a-fd9c-44a5-bc6e-a4a0038b621f_full.webp" style="width: 1600px;height:640px ;display:block; margin:auto">
+                    <li>Full Bathroom Amenities: Enjoy the convenience of a fully equipped bathroom, complete with all the necessary amenities for a refreshing experience.</li>
+                    <img src="https://img.lexica.art/9a413269-4ae4-490d-aa23-57bd15d45b97_full.webp" style="width: 1600px;height:640px ;display:block; margin:auto">
+                    <li>Comfortable Workspace: Stay productive with a dedicated and comfortable workspace, suitable for both work and leisure activities.</li>
+                    <img src="https://img.lexica.art/12c9ed8c-ff39-4197-96f2-a4caeaec5391_full.webp" style="width: 1600px;height:640px ;display:block; margin:auto">
+                    <li>Large Windows: Embrace scenic views with expansive windows that allow ample natural light, connecting the indoor space with the surrounding environment.</li>
+                    <img src="https://img.lexica.art/8dd14e21-227e-4e56-9903-010f59680b8d_full.webp" style="width: 1600px;height:640px ;display:block; margin:auto">
+                </ol>
+            </ul>
+        </div>
+ 
+</body>
+</html>
